@@ -4,10 +4,10 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from "mongoose";
 import { User } from './models/user.models.js';
-
+const app = express();
 import cors from 'cors';
 app.use(cors());
-const app = express();
+
 // app.use(cors(
 //   {
 //      origin:["https://todo-frontend-mu-three.vercel.app"],
