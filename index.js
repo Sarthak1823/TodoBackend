@@ -4,7 +4,8 @@ import bodyParser from 'body-parser';
 import mongoose from "mongoose";
 import { User } from './models/user.models.js';
 
-// import cors from 'cors';
+import cors from 'cors';
+app.use(cors());
 const app = express();
 // app.use(cors(
 //   {
