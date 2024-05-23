@@ -1,9 +1,18 @@
+require('dotenv').config();
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from "mongoose";
 import { User } from './models/user.models.js';
-const app = express();
 
+// import cors from 'cors';
+const app = express();
+// app.use(cors(
+//   {
+//      origin:["https://todo-frontend-mu-three.vercel.app"],
+//      methods:["POST","GET","USE"],
+//      credentials:true
+//   }
+// ));
 const connectDB=async ()=>{
   await mongoose.connect("mongodb+srv://Admin:Sarthak1823@cluster0.pr3yfqy.mongodb.net/")
   .then(
@@ -14,7 +23,9 @@ const connectDB=async ()=>{
 connectDB();
 // Use middleware to parse JSON in the request body
 app.use(bodyParser.json());
-
+app.get('/',(req,res)=>{
+   res.send("Hello");
+})
 app.use('/api/', async (req, res) => {
    const {name,email}=req.body;
    
@@ -104,7 +115,7 @@ const user=await User.findOne({email:email});
  })
 
 })
-const port = 3000;
+const port=process.env.PORT;
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}/api`);
 });
